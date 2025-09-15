@@ -1,15 +1,15 @@
 REPORT ztest_po_creation.
 
 START-OF-SELECTION.
-  DATA: lo_po_api      TYPE REF TO zcl_purchase_order_api,
-        ls_po_header   TYPE zcl_purchase_order_api=>ty_po_header,
-        lt_po_item     TYPE zcl_purchase_order_api=>tty_po_item,
-        lt_po_account  TYPE zcl_purchase_order_api=>tty_po_account,
+  DATA: lo_po_api      TYPE REF TO zif_purchase_order_api,
+        ls_po_header   TYPE zif_purchase_order_api=>ty_po_header,
+        lt_po_item     TYPE zif_purchase_order_api=>tty_po_item,
+        lt_po_account  TYPE zif_purchase_order_api=>tty_po_account,
         lv_po_number   TYPE bapiekko-po_number,
         lt_return      TYPE bapirettab.
 
-  " Instantiate the wrapper class
-  CREATE OBJECT lo_po_api.
+  " Instantiate the wrapper class via the factory
+  lo_po_api = zcl_purchase_order_factory=>create_api_instance( ).
 
   " Prepare PO Header Data
   ls_po_header-comp_code = '1000'.
